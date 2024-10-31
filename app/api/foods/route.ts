@@ -29,3 +29,30 @@ export async function POST(req: NextRequest){
         {status:500})
     }
 }
+
+export async function GET(){
+    try {
+        await connectMongoDB();
+        const foods = await Food.find();
+
+        return NextResponse.json(
+            {
+                message: "Foods fetched successfully hehe", foods
+            },
+            {
+                status:200,
+            }
+        )
+
+    } catch (error) {
+        console.error("Error fetching foods :(", error);
+
+        return NextResponse.json({
+                message: "Failed to fetch foods", error
+            },
+            {
+                status: 500
+            }
+        )
+    }
+}

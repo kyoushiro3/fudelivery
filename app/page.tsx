@@ -1,5 +1,6 @@
 import GridPattern from "@/components/ui/grid-pattern";
 import { cn } from "@/libs/utils";
+import AllFood from "./allFood/page";
 
 export default function Home() {
   return (
@@ -21,6 +22,9 @@ export default function Home() {
             <span className="text-red dark:text-yellow">Felicem</span>
           </h1>
           <p>the #1 delivery app.</p>
+
+          <AllFood />
+          <p>sdsd</p>
         </div>
       </div>
 

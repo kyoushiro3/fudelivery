@@ -44,23 +44,24 @@ export default function Header() {
 
         <div className="hidden md:grid lg:grid grid-flow-col gap-2 border border-black bg-[rgba(228,224,217,0.3)] rounded-lg backdrop-blur-xl">
           {nav_links.map(({ name, link }) => (
-              <NavLink
-                key={name}
-                href={link}
-                className="text-black font-semibold px-[.875em] py-[.75em]"
-                activeClassName="text-yellow-500"
-              >
-                {name}
-              </NavLink>
+            <NavLink
+              key={name}
+              href={link}
+              className="text-black font-semibold px-[.875em] py-[.75em]"
+              activeClassName="text-yellow-500"
+            >
+              {name}
+            </NavLink>
           ))}
         </div>
 
-
-          <div className="grid grid-flow-col gap-4">
-            <button className="font-semibold">Login</button>
-            <button className="font-semibold border border-black bg-yellow-500 rounded-lg px-[.875em] py-[.75em]">Order Now</button>
-          </div>
-          {/* <svg
+        <div className="grid grid-flow-col gap-4">
+          <button className="font-semibold">Login</button>
+          <button className="font-semibold border border-black bg-yellow-500 rounded-lg px-[.875em] py-[.75em]">
+            Order Now
+          </button>
+        </div>
+        {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             id="Layer_1"
             data-name="Layer 1"
