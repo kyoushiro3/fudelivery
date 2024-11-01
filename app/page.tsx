@@ -1,10 +1,9 @@
 import GridPattern from "@/components/ui/grid-pattern";
 import { cn } from "@/libs/utils";
-import AllFood from "./allFood/page";
 
 export default function Home() {
   return (
-    <div className="max-w-7xl">
+    <div className="max-w-7xl mx-auto">
       <div className="z-50">
         <GridPattern
           width={100}
@@ -16,15 +15,12 @@ export default function Home() {
           )}
         />
       </div>
-      <div className="mx-auto mt-7 px-4 sm:px-6 md:px-12 lg:px-20">
-        <div className="flex flex-col items-center mx-auto">
-          <h1 className="text-5xl md:text-7xl text-primary dark:text-primary-dark">
-            <span className="text-red dark:text-yellow">Felicem</span>
+      <div className="mt-20 px-4 sm:px-6 md:px-12 lg:px-20 justify-center">
+        <div className="mx-auto flex flex-col items-center">
+          <h1 className="text-5xl md:text-7xl text-primary dark:text-primary-dark text-center">
+          Delivering Happiness, One Meal at a Time!
           </h1>
           <p>the #1 delivery app.</p>
-
-          <AllFood />
-          <p>sdsd</p>
         </div>
       </div>
 
@@ -32,3 +28,5 @@ export default function Home() {
     </div>
   );
 }
+
+
