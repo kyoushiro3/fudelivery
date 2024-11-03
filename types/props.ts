@@ -7,3 +7,7 @@ export interface foodData {
   img: string;
   isAvailable: boolean;
 }
+
+export interface customerData {
+  id?: string;
+}

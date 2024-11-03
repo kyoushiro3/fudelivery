@@ -8,14 +8,14 @@ interface NavLinkProps {
 }
 
 export default function Header() {
-  const nav_links:NavLinkProps[] = [
+  const nav_links: NavLinkProps[] = [
     {
       name: "Home",
       link: "/",
     },
     {
       name: "Foods",
-      link: "/addFood",
+      link: "/allFood",
       dropdown: [
         { name: "Burgers & Sandwiches", link: "/" },
         { name: "Pasta & Noodles", link: "/" },
@@ -36,14 +36,10 @@ export default function Header() {
     {
       name: "About Us",
       link: "/about",
-      dropdown:[
-        {name: "About Us",
-          link: "/"
-        },
-        {name: "About Us",
-          link: "/"
-        },
-      ]
+      dropdown: [
+        { name: "About Us", link: "/" },
+        { name: "About Us", link: "/" },
+      ],
     },
     {
       name: "Contact",
@@ -99,29 +95,16 @@ export default function Header() {
           {" "}
           {/* ml to center */}
           {nav_links.map(({ name, link, dropdown }) => (
-            // <li
-            // className="px-[.875em] py-[.75em] list-none"
-            //   key={name}
-            //   // onClick={() => setHoveredLink(name)}
-            //   onMouseEnter={() => setHoveredLink(name)}
-            //   onMouseLeave={() => setHoveredLink(null)}
-            // >
             <li className="px-[.875em] py-[.75em] list-none" key={name}>
-
               <NavLink
                 key={name}
                 href={link}
                 className="text-black font-semibold"
                 activeClassName="text-yellow-500"
               >
-                                <MyHoverCard name={name} dropdown={dropdown} />
+                <MyHoverCard name={name} dropdown={dropdown} />
               </NavLink>
-              {/* {hoveredLink === name && dropdown && (
-                <NavDropdownMenu items={dropdown} divName={name}/>
-              )} */}
-
-              </li>
-            // </li>
+            </li>
           ))}
         </div>
 
