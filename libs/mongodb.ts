@@ -4,7 +4,7 @@ let isConnected: boolean = false; //let is for global access variable and TS mea
 
 const connectMongoDB = async (): Promise<void> =>{ //async wait 5 mins im gonna have to drink
     if(isConnected){
-        console.log("you are connected to mongodb ahah")
+        console.log("Hi, it's now connected to MongoDB.")
         return;
     }
 
@@ -17,7 +17,7 @@ const connectMongoDB = async (): Promise<void> =>{ //async wait 5 mins im gonna 
     try {
         await mongoose.connect(mongoDBURI || '') //i'm using this '' to avoid errors
         isConnected = true;
-        console.log("you are connected HAHAH")
+        console.log("You're now connected to MongoDB.")
         
     } catch (error) {
         console.error("sorry there's an error ;(", error)

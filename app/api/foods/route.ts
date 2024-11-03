@@ -6,8 +6,7 @@ export async function POST(req: NextRequest){
     await connectMongoDB();
 
     try {
-        const data = await req.json(); //we are sending the data and exporting to JSON 
-
+        const data = await req.json(); 
         if(!data.name || !data.description ) {
            return NextResponse.json({error: "Please enter all the required fields HAHA"}, {status: 400})
         }
