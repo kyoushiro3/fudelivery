@@ -9,9 +9,9 @@ interface NavLinkProps {
   dropdown?: { name: string; link: string }[]; // Make dropdown optional
 }
 
-const style ={
-    food: "bg-[#ffe0cc] border-[#ffc8a3] text-[#b74d1a] hover:text-white",
-}
+const style = {
+  food: "bg-[#ffe0cc] border-[#ffc8a3] text-[#b74d1a] hover:text-white",
+};
 
 const MyHoverCard: React.FC<NavLinkProps> = ({ name, dropdown }) => {
   return (
@@ -39,12 +39,12 @@ const MyHoverCard: React.FC<NavLinkProps> = ({ name, dropdown }) => {
                       <li
                         key={item.name}
                         className={`px-10 py-2 text-sm ${
-              name === "Foods"
-                ? style.food
-                : name === "Contact"
-                ? "bg-green-100"
-                : "bg-white"
-            }`}
+                          name === "Foods"
+                            ? style.food
+                            : name === "Contact"
+                            ? "bg-green-100"
+                            : "bg-white"
+                        }`}
                       >
                         <a href={item.link}>{item.name}</a>
                       </li>
@@ -59,7 +59,13 @@ const MyHoverCard: React.FC<NavLinkProps> = ({ name, dropdown }) => {
                     .map((item) => (
                       <li
                         key={item.name}
-                        className="px-10 py-2 text-sm"
+                        className={`px-10 py-2 text-sm ${
+                          name === "Foods"
+                            ? style.food
+                            : name === "Contact"
+                            ? "bg-green-100"
+                            : "bg-white"
+                        }`}
                       >
                         <a href={item.link}>{item.name}</a>
                       </li>

@@ -7,14 +7,11 @@ const AllFood = async () => {
 
   return (
     <div className="mt-20 px-4 sm:px-6 md:px-12 lg:px-20 justify-center">
-      tryyyyy
       <div className="">
-      <DataTable columns={columns} data={foods} />
-    </div>
+        <DataTable columns={columns} data={foods} />
+      </div>
     </div>
   );
 };
 
 export default AllFood;
-
-

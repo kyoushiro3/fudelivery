@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../dropdown-menu";
-
+import RemoveBtn from "../removeBtn";
 
 export const columns: ColumnDef<foodData>[] = [
   {
@@ -74,23 +74,13 @@ export const columns: ColumnDef<foodData>[] = [
                 food._id && navigator.clipboard.writeText(food._id)
               }
             >
-             View
+              View
             </DropdownMenuItem>
             <DropdownMenuSeparator />
+            <DropdownMenuItem>View Food</DropdownMenuItem>
             <DropdownMenuItem>
-              View Food
-              {/* <Button
-                className="px-2 py-1 h-7"
-                onClick={() =>
-                  Router.push(
-                    `/all-blog/${food.name.trim().replace(/[^\w]/gi, "-")}`
-                  )
-                }
-              >
-                View
-              </Button> */}
+              <RemoveBtn id={food._id} />
             </DropdownMenuItem>
-            <DropdownMenuItem>Edit Food</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
