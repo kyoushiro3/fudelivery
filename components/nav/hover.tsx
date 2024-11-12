@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   HoverCard,
   HoverCardContent,
@@ -6,7 +7,7 @@ import {
 
 interface NavLinkProps {
   name: string;
-  dropdown?: { name: string; link: string }[]; // Make dropdown optional
+  dropdown?: { name: string; link: string }[]; 
 }
 
 const style = {
@@ -16,13 +17,17 @@ const style = {
 const MyHoverCard: React.FC<NavLinkProps> = ({ name, dropdown }) => {
   return (
     <HoverCard>
-      <HoverCardTrigger>{name}</HoverCardTrigger>
+     
+      <HoverCardTrigger asChild>
+        <button className="hover-trigger-button">{name}</button>
+      </HoverCardTrigger>
+
       {dropdown &&
-        dropdown.length > 0 && ( // Render only if dropdown is defined and not empty
+        dropdown.length > 0 && ( 
           <HoverCardContent
-            className={`mt-4 p-4     ${
+            className={`mt-4 p-4 ${
               name === "Foods"
-                ? "bg-[#ffe0cc] border-[#ffc8a3] text-[#b74d1a] opacity-100"
+                ? "bg-[#ffe0cc] border-[#ffc8a3] text-[#b74d1a] opacity-100 z-50"
                 : name === "Contact"
                 ? "bg-green-100"
                 : "bg-white"
@@ -46,7 +51,7 @@ const MyHoverCard: React.FC<NavLinkProps> = ({ name, dropdown }) => {
                             : "bg-white"
                         }`}
                       >
-                        <a href={item.link}>{item.name}</a>
+                        <Link href={item.link}>{item.name}</Link>
                       </li>
                     ))}
                 </ul>
@@ -67,7 +72,7 @@ const MyHoverCard: React.FC<NavLinkProps> = ({ name, dropdown }) => {
                             : "bg-white"
                         }`}
                       >
-                        <a href={item.link}>{item.name}</a>
+                         <Link href={item.link}> {item.name}</Link>
                       </li>
                     ))}
                 </ul>

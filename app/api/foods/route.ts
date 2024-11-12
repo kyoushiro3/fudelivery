@@ -1,4 +1,4 @@
-import connectMongoDB from "@/libs/mongodb";
+import connectMongoDB from "@/lib/mongodb";
 import Food from "@/models/food";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -6,28 +6,43 @@ export async function POST(req: NextRequest) {
   await connectMongoDB();
 
   try {
-    const data = await req.json();
-    if (!data.name || !data.description) {
+    const data = await req.formData(); // Change this if you expect JSON, depending on your frontend
+    const foodData = {
+      name: data.get("name") as string,
+      description: data.get("description") as string,
+      price: parseFloat(data.get("price") as string),
+      category: data.get("category") as string,
+      isAvailable: data.get("isAvailable") === "true",
+      img: data.get("img"), // Assuming this is a string representation
+    };
+
+    // Check for the image data
+    const imgData = data.get("img"); // img should be the name of your file input
+
+    if (imgData instanceof File) {
+      const imgBuffer = Buffer.from(await imgData.arrayBuffer());
+      // Proceed with storing imgBuffer
+      foodData.img = imgBuffer.toString('base64'); // If you want to store it as base64
+    } else {
+      console.error("Image data is not a valid file.");
+      return NextResponse.json({ error: "Image data is required" }, { status: 400 });
+    }
+
+    // Check required fields
+    if (!foodData.name || !foodData.description) {
       return NextResponse.json(
-        { error: "Please enter all the required fields HAHA" },
+        { error: "Please enter all the required fields" },
         { status: 400 }
       );
     }
 
-    const makeFood = await Food.create({
-      name: data.name,
-      description: data.description,
-      price: data.price,
-      category: data.category,
-      img: data.img,
-      isAvailable: data.isAvailable,
-    });
+    const makeFood = await Food.create(foodData);
 
     return NextResponse.json({ food: makeFood }, { status: 201 });
   } catch (error) {
-    console.error(error);
+    console.error("Error in POST handler:", error);
     return NextResponse.json(
-      { error: "Failed to parse JSON or save food" },
+      { error: "Failed to parse form data or save food" },
       { status: 500 }
     );
   }

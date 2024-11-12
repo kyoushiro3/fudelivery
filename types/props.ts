@@ -11,3 +11,18 @@ export interface foodData {
 export interface customerData {
   id?: string;
 }
+
+export interface orderItem{
+  foodId: string;
+  quantity: number;
+  price:number;
+}
+
+export interface orderFormData{
+  customerId: string;
+  items: orderItem[];
+  status: string;
+  deliveryFee: number;
+  totalAmount: number;
+  orderedAt: string;
+}
