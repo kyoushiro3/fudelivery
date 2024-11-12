@@ -1,4 +1,4 @@
-import connectMongoDB from "@/libs/mongodb";
+import connectMongoDB from "@/lib/mongodb";
 import Order from "@/models/order";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";

@@ -17,7 +17,7 @@ export default function Header() {
       name: "Foods",
       link: "/allFood",
       dropdown: [
-        { name: "Burgers & Sandwiches", link: "/" },
+        { name: "Burgers & Sandwiches", link: "/foods/addFood" },
         { name: "Pasta & Noodles", link: "/" },
         { name: "Pizza", link: "/" },
         { name: "Salads", link: "/" },
@@ -62,7 +62,7 @@ export default function Header() {
   // const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   return (
-    <div className="mt-7 px-4 sm:px-6 md:px-12 lg:px-20 text-sm font-medium ">
+    <div className="mt-7 px-4 sm:px-6 md:px-12 lg:px-20 text-sm font-medium z-50">
       <div className="px-4 py-4 flex flex-row justify-between items-center">
         <div className="flex gap-2 items-center rounded-lg border border-black bg-[#eab308]">
           <svg
@@ -91,14 +91,13 @@ export default function Header() {
           </svg>
         </div>
 
-        <div className="ml-24 hidden md:grid lg:grid grid-flow-col gap-2 border border-black bg-[rgba(228,224,217,0.3)] rounded-lg backdrop-blur-xl">
+        <div className="ml-24 hidden md:grid lg:grid grid-flow-col gap-2 border border-black bg-[rgba(228,224,217,0.3)] rounded-lg backdrop-blur-xl z-50">
           {" "}
-          {/* ml to center */}
-          {nav_links.map(({ name, link, dropdown }) => (
+          {nav_links.map(({ name, dropdown }) => (
             <li className="px-[.875em] py-[.75em] list-none" key={name}>
               <NavLink
                 key={name}
-                href={link}
+                href={name}
                 className="text-black font-semibold"
                 activeClassName="text-yellow-500"
               >
