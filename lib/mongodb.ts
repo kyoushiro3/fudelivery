@@ -4,14 +4,14 @@ let isConnected: boolean = false; //let is for global access variable and TS mea
 
 const connectMongoDB = async (): Promise<void> =>{ //async wait 5 mins im gonna have to drink
     if(isConnected){
-        console.log("Hi, it's now connected to MongoDB.")
+        console.log("MongoDB is now connected and running...")
         return;
     }
 
     const mongoDBURI = process.env.MONGODB_URI; //we will be getting the file .env
 
     if(!mongoDBURI){
-        console.error("mongodb connection is nnot defined sory HAHAH")
+        console.error("MongoDB not working.")
     }
 
     try {
@@ -20,7 +20,7 @@ const connectMongoDB = async (): Promise<void> =>{ //async wait 5 mins im gonna 
         console.log("You're now connected to MongoDB.")
         
     } catch (error) {
-        console.error("sorry there's an error ;(", error)
+        console.error("Sorry, there was an error.", error)
     }
 }
 

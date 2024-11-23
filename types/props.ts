@@ -26,3 +26,15 @@ export interface orderFormData{
   totalAmount: number;
   orderedAt: string;
 }
+
+export type SiteConfig = {
+  name: string;
+  description?: string;
+  keywords:string[];
+  url?:string;
+  ogImage?: string;
+  links?:{
+    instagram:string;
+    twitter:string;
+  }
+}
