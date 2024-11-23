@@ -2,26 +2,38 @@ import connectMongoDB from "@/lib/mongodb";
 import Order from "@/models/order";
 import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
-  //send request to mongodb to store
   await connectMongoDB();
 
   try {
-    const data = await req.json();
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || !session.user.id) {
+      return NextResponse.json(
+        { error: "Unauthorized access." },
+        { status: 401 }
+      );
+    }
 
-    // Ensure `customerId` and `foodId` for each item are in ObjectId format
+    const userId = session.user.id;
+    console.log("user id:", userId);
+
+    const data = await req.json();
+    console.log(data)
+
     const createOrder = await Order.create({
-      customerId: new mongoose.Types.ObjectId(data.customerId),
+      customerId: userId,
       items: data.items.map((item) => ({
         foodId: new mongoose.Types.ObjectId(item.foodId),
         quantity: item.quantity,
         price: item.price,
       })),
-      status: data.status,
+      status: "pending",
       deliveryFee: data.deliveryFee,
       totalAmount: data.totalAmount,
-      orderedAt: new Date(data.orderedAt), // Ensure `orderedAt` is a valid date
+      orderedAt: new Date(Date.now()), 
     });
 
     return NextResponse.json({ order: createOrder }, { status: 201 });
