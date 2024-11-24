@@ -12,11 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  CreditCard,
-  LogOut,
-  User,
-} from "lucide-react"
+import { CreditCard, LogOut, User } from "lucide-react";
 import { getCurrentUser } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
@@ -27,17 +23,17 @@ interface DashboardLayoutProps {
 
 export default async function Dashboard({ children }: DashboardLayoutProps) {
   const cookieStore = await cookies();
-  const defaultOpen = cookieStore.get("sidebar:state")?.value === "true"; //i will set to default first to test
+  const defaultOpen = cookieStore.get("sidebar:state")?.value === "false"; //i will set to default first to test
 
   const user = await getCurrentUser();
 
   if (!user) {
     redirect(authOptions?.pages?.signIn || "/login");
   }
-  if(user.role !== "admin"){
-    redirect("/error")
-  }
-  
+  // if(user.role !== "admin"){
+  //   redirect("/error")
+  // }
+
   return (
     <div>
       <SidebarProvider defaultOpen={defaultOpen}>
@@ -45,16 +41,25 @@ export default async function Dashboard({ children }: DashboardLayoutProps) {
         <main className="border border-black w-full">
           <div className="pr-6 flex flex-row justify-between border border-black">
             <SidebarTrigger />
+
             <DropdownMenu>
-              <DropdownMenuTrigger>{user.name?.split(' ').slice(0, -1).join(' ')}</DropdownMenuTrigger>
+              <DropdownMenuTrigger>
+                {user.name?.split(" ").slice(0, -1).join(" ")}
+              </DropdownMenuTrigger>
               <DropdownMenuContent className="w-48">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem> <User />Profile</DropdownMenuItem>
-                <DropdownMenuItem><CreditCard/> Billing</DropdownMenuItem>
+                <DropdownMenuItem>
+                  {" "}
+                  <User />
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <CreditCard /> Billing
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <LogOut/> <LogoutButton />
+                  <LogOut /> <LogoutButton />
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
