@@ -1,4 +1,3 @@
-import Footer from "@/components/nav/footer";
 import { Inter } from "next/font/google";
 
 interface AuthLayoutProps {
@@ -11,7 +10,6 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className={`${inter.className}min-h-screen`}>
       {children}
-      <Footer />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { useRouter } from "next/navigation";
 import { MdDelete } from "react-icons/md";
 
 interface RemoveBtnProps {
-  id: string;
+  id?: string;
 }
 
 export default function RemoveBtn({ id }: RemoveBtnProps) {

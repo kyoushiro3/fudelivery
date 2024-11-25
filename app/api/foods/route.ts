@@ -3,32 +3,31 @@ import Food from "@/models/food";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+  
   await connectMongoDB();
 
   try {
-    const data = await req.formData(); // Change this if you expect JSON, depending on your frontend
+    const data = await req.formData(); 
     const foodData = {
       name: data.get("name") as string,
       description: data.get("description") as string,
       price: parseFloat(data.get("price") as string),
       category: data.get("category") as string,
       isAvailable: data.get("isAvailable") === "true",
-      img: data.get("img"), // Assuming this is a string representation
+      img: data.get("img"), 
     };
 
-    // Check for the image data
-    const imgData = data.get("img"); // img should be the name of your file input
+    const imgData = data.get("img"); 
 
     if (imgData instanceof File) {
       const imgBuffer = Buffer.from(await imgData.arrayBuffer());
-      // Proceed with storing imgBuffer
-      foodData.img = imgBuffer.toString('base64'); // If you want to store it as base64
+
+      foodData.img = imgBuffer.toString('base64'); 
     } else {
       console.error("Image data is not a valid file.");
       return NextResponse.json({ error: "Image data is required" }, { status: 400 });
     }
 
-    // Check required fields
     if (!foodData.name || !foodData.description) {
       return NextResponse.json(
         { error: "Please enter all the required fields" },

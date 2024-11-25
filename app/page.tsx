@@ -1,10 +1,6 @@
 import GridPattern from "@/components/ui/grid-pattern";
-import Waves from "@/components/ui/waves";
 import { cn } from "@/lib/utils";
 import { Metadata } from "next";
-import { CarouselSize } from "./foods/allFood/foodCarousel";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Onest } from "next/font/google";
 import { FiMapPin } from "react-icons/fi";
 

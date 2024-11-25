@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { LoginData, loginSchema } from "@/lib/validations/types";
 import { useRouter } from "next/navigation";
@@ -33,7 +32,7 @@ const LoginForm = () => {
       });
 
       if (!result?.ok) {
-        setServerError(result.error || "Login failed.");
+        setServerError(result?.error || "Login failed.");
         return;
       }
 
